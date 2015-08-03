@@ -9,7 +9,6 @@ public class WireIsReadBlock extends TranslatorBlock
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
 
-	@Override
 	public String toCode()
 	{
 		WireReadBlock.setupWireEnvironment(translator);

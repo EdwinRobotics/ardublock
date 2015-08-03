@@ -12,7 +12,6 @@ public class WireWriteBlock extends TranslatorBlock
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
 
-	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 		WireReadBlock.setupWireEnvironment(translator);
@@ -24,7 +23,7 @@ public class WireWriteBlock extends TranslatorBlock
 			ret += "//Unable to dectect your Arduino version, using 1.0 in default\n";
 		}
 		
-		ret += "\t__ardublockI2cWriteData( ";
+		ret += "__ardublockI2cWriteData( ";
 		TranslatorBlock tb = getRequiredTranslatorBlockAtSocket(0);
 		ret = ret + tb.toCode();
 		ret = ret + " , ";

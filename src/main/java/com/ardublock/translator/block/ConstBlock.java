@@ -1,6 +1,7 @@
 package com.ardublock.translator.block;
 
 import com.ardublock.translator.Translator;
+import com.ardublock.translator.block.TranslatorBlock;
 
 public abstract class ConstBlock extends TranslatorBlock
 {
@@ -16,7 +17,6 @@ public abstract class ConstBlock extends TranslatorBlock
 		this.code = code;
 	}
 	
-	@Override
 	public String toCode()
 	{
 		return codePrefix + code + codeSuffix;

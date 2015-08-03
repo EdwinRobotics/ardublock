@@ -2,13 +2,12 @@ package com.ardublock.translator.block;
 
 import com.ardublock.translator.Translator;
 import com.ardublock.translator.adaptor.BlockAdaptor;
-import com.ardublock.translator.block.exception.BlockException;
 import com.ardublock.translator.block.exception.SocketNullException;
 import com.ardublock.translator.block.exception.SubroutineNotDeclaredException;
 
 abstract public class TranslatorBlock
 {
-	abstract public String toCode() throws SocketNullException, SubroutineNotDeclaredException, BlockException;
+	abstract public String toCode() throws SocketNullException, SubroutineNotDeclaredException;
 	
 	protected Long blockId;
 	
@@ -57,7 +56,7 @@ abstract public class TranslatorBlock
 		return translator;
 	}
 	
-	public TranslatorBlock nextTranslatorBlock()
+	protected TranslatorBlock nextTranslatorBlock()
 	{
 		return this.nextTranslatorBlock("", "");
 	}
@@ -101,7 +100,4 @@ abstract public class TranslatorBlock
 	{
 		return this.comment;
 	}
-	
-	public void onTranslateBodyFinished() throws SocketNullException, SubroutineNotDeclaredException{}
-	
 }
