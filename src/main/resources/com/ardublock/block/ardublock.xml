@@ -3448,6 +3448,41 @@
 			</Images>
 		</BlockGenus>
 		
+		<!-- ER -->
+
+		<BlockGenus name="er_joystick" kind="data" color="255 255 0" initlabel="bg.er_joystick">
+			<description>
+				<text>Read analog value from analog pin</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number" connector-kind="socket" label="bc.pin_number">
+					<DefaultArg genus-name="ER_A0" label="A0" />
+				</BlockConnector>
+				<BlockConnector connector-type="number" connector-kind="plug" />
+			</BlockConnectors>
+			<Images>
+				<Image>
+					<FileLocation>com/ardublock/block/seeedstudio/COM90133P.jpg</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
+
+		<BlockGenus name="er_joystick_button" kind="data" color="2 255 0" initlabel="bg.er_joystick_button">
+			<description>
+				<text>Read analog value from analog pin</text>
+			</description>
+			<BlockConnectors>
+				<BlockConnector connector-type="number" connector-kind="socket" label="bc.pin_number">
+					<DefaultArg genus-name="ER_A0" label="A0" />
+				</BlockConnector>
+				<BlockConnector connector-type="boolean" connector-kind="plug" />
+			</BlockConnectors>
+			<Images>
+				<Image>
+					<FileLocation>com/ardublock/block/seeedstudio/COM90133P.jpg</FileLocation>
+				</Image>
+			</Images>
+		</BlockGenus>
 		
 		
 		<!-- seeedstudio grove -->
@@ -9611,6 +9646,10 @@
 				<BlockGenusMember>midi_command</BlockGenusMember>
 				<!-- <BlockGenusMember>midi_note</BlockGenusMember> -->
 			</BlockDrawer>
+			<BlockDrawer button-color="0 255 0" name="bd.er">
+				<BlockGenusMember>er_joystick</BlockGenusMember>
+				<BlockGenusMember>er_joystick_button</BlockGenusMember>
+			</BlockDrawer>			
 			<!--
 			<BlockDrawer button-color="135 206 235" name="bd.linksprite_LinkerKit">
 				<BlockGenusMember>ls_10mmLEDModule</BlockGenusMember>
