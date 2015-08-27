@@ -10,9 +10,10 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 
 import processing.app.Editor;
+import com.ardublock.core.Context;
+
 import processing.app.tools.Tool;
 
-import com.ardublock.core.Context;
 import com.ardublock.ui.ArduBlockToolFrame;
 import com.ardublock.ui.listener.OpenblocksFrameListener;
 
@@ -31,7 +32,6 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 			String arduinoVersion = this.getArduinoVersion();
 			context.setInArduino(true);
 			context.setArduinoVersionString(arduinoVersion);
-			context.setEditor(editor);
 			System.out.println("Arduino Version: " + arduinoVersion);
 		}
 	}
@@ -58,20 +58,11 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 		
 	}
 	
-	public void didSaveAs()
-	{
-		
-	}
-	
-	public void didNew()
-	{
-		
-	}
-	
 	public void didGenerate(String source) {
 		ArduBlockTool.editor.setText(source);
 		ArduBlockTool.editor.handleExport(false);
 	}
+	
 	
 	private String getArduinoVersion()
 	{
@@ -84,7 +75,6 @@ public class ArduBlockTool implements Tool, OpenblocksFrameListener
 				InputStream is = new FileInputStream(versionFile);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
 				String line = reader.readLine();
-				reader.close();
 				if (line == null)
 				{
 					return Context.ARDUINO_VERSION_UNKNOWN;

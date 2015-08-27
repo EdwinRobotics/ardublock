@@ -12,7 +12,6 @@ public class InversedAnalogOutputBlock extends AnalogOutputBlock
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
 
-	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);

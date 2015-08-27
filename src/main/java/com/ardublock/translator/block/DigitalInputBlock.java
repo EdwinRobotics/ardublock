@@ -13,41 +13,30 @@ public class DigitalInputBlock extends TranslatorBlock
 		super(blockId, translator, codePrefix, codeSuffix, label);
 	}
 
-	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 		TranslatorBlock translatorBlock = this.getRequiredTranslatorBlockAtSocket(0);
 		if (translatorBlock instanceof NumberBlock)
 		{
-			return generateCodeUsingNumberBlock(translatorBlock);
+			String number;
+			number = translatorBlock.toCode();
+			String setupCode = "pinMode( " + number + " , INPUT);";
+			translator.addSetupCommand(setupCode);
+			String ret = "digitalRead( ";
+			ret = ret + number;
+			ret = ret + ")";
+			return codePrefix + ret + codeSuffix;
 		}
 		else
 		{
-			return generateCodeUsingNonNumberBlock(translatorBlock);
+			translator.addDefinitionCommand(ARDUBLOCK_DIGITAL_READ_DEFINE);
+			String ret = "__ardublockDigitalRead(";
+			
+			ret = ret + translatorBlock.toCode();
+			ret = ret + ")";
+			return codePrefix + ret + codeSuffix;
 		}
 		
-	}
-	
-	protected String generateCodeUsingNumberBlock(TranslatorBlock translatorBlock) throws SocketNullException, SubroutineNotDeclaredException
-	{
-		String number;
-		number = translatorBlock.toCode();
-		translator.addInputPin(number.trim());
-		
-		String ret = "digitalRead(";
-		ret = ret + number;
-		ret = ret + ")";
-		return codePrefix + ret + codeSuffix;
-	}
-	
-	protected String generateCodeUsingNonNumberBlock(TranslatorBlock translatorBlock) throws SocketNullException, SubroutineNotDeclaredException
-	{
-		translator.addDefinitionCommand(ARDUBLOCK_DIGITAL_READ_DEFINE);
-		String ret = "__ardublockDigitalRead(";
-		
-		ret = ret + translatorBlock.toCode();
-		ret = ret + ")";
-		return codePrefix + ret + codeSuffix;
 	}
 
 }

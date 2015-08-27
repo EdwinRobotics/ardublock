@@ -11,24 +11,15 @@ public class LoopBlock extends TranslatorBlock
 		super(blockId, translator);
 	}
 
-	@Override
 	public String toCode() throws SocketNullException, SubroutineNotDeclaredException
 	{
 		String ret;
 		ret = "void loop()\n{\n";
-		if (translator.isGuinoProgram())
-		{
-			ret += "GUINO_GERER_INTERFACE();\n";
-		}
 		TranslatorBlock translatorBlock = getTranslatorBlockAtSocket(0);
 		while (translatorBlock != null)
 		{
 			ret = ret + translatorBlock.toCode();
 			translatorBlock = translatorBlock.nextTranslatorBlock();
-		}
-		if (translator.isScoopProgram())
-		{
-			ret += "yield();\n";
 		}
 		ret = ret + "}\n\n";
 		return ret;
